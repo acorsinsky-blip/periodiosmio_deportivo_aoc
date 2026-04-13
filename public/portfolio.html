@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOC - Periodismo Deportivo | Alexander Oleg Corsinsky</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'river-red': '#E30613',
+                        'river-dark': '#0a0a0a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        html { scroll-behavior: smooth; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(227,6,19,0.2) 50%, rgba(0,0,0,0.95) 100%),
+                        url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(227,6,19,0.3);
+        }
+        
+        .glow-red {
+            box-shadow: 0 0 30px rgba(227,6,19,0.5);
+        }
+        
+        .badge-verified {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #fff 0%, #E30613 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #E30613;
+        }
+    </style>
+</head>
+<body class="bg-river-dark text-white font-inter">
+    
+    <!-- Sticky Header -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="#" class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-river-red rounded-full flex items-center justify-center font-bebas text-xl">
+                        AOC
+                    </div>
+                    <span class="font-bebas text-xl md:text-2xl tracking-wider hidden sm:block">PERIODISMO DEPORTIVO</span>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#primicias" class="hover:text-river-red transition-colors font-medium">Primicias</a>
+                    <a href="#entrevistas" class="hover:text-river-red transition-colors font-medium">Entrevistas</a>
+                    <a href="#cobertura" class="hover:text-river-red transition-colors font-medium">Cobertura</a>
+                    <a href="#contacto" class="bg-river-red px-5 py-2 rounded font-semibold hover:bg-red-700 transition-colors">Contacto</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-lg border-t border-white/10">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#primicias" class="block py-2 hover:text-river-red transition-colors">Primicias</a>
+                <a href="#entrevistas" class="block py-2 hover:text-river-red transition-colors">Entrevistas</a>
+                <a href="#cobertura" class="block py-2 hover:text-river-red transition-colors">Cobertura</a>
+                <a href="#contacto" class="block py-2 text-river-red font-semibold">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-river-dark"></div>
+        
+        <!-- Animated Lines -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-river-red to-transparent"></div>
+            <div class="absolute top-2/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+            <div class="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-river-red to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-6 inline-flex items-center gap-2 bg-river-red/20 border border-river-red/50 px-4 py-2 rounded-full">
+                <span class="w-2 h-2 bg-river-red rounded-full animate-pulse"></span>
+                <span class="text-sm font-medium">EN VIVO - Cubriendo el fútbol mundial</span>
+            </div>
+            
+            <h1 class="font-bebas text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight mb-4 gradient-text">
+                ALEXANDER OLEG<br>CORSINSKY
+            </h1>
+            
+            <p class="text-xl sm:text-2xl md:text-3xl font-light text-gray-300 mb-6">
+                18 años | <span class="text-river-red font-semibold">Informando la pasión del fútbol</span>
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                    <i data-lucide="trophy" class="w-4 h-4 text-river-red"></i>
+                    Fútbol Argentino
+                </span>
+                <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                    <i data-lucide="shield" class="w-4 h-4 text-river-red"></i>
+                    River Plate
+                </span>
+                <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                    <i data-lucide="flag" class="w-4 h-4 text-river-red"></i>
+                    Selección Argentina
+                </span>
+                <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                    <i data-lucide="globe" class="w-4 h-4 text-river-red"></i>
+                    Mercado Europeo
+                </span>
+            </div>
+            
+            <p class="text-gray-400 text-sm mb-10">
+                <i data-lucide="calendar" class="w-4 h-4 inline mr-1"></i>
+                Nacido el 05/12/2007 | Buenos Aires, Argentina
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#primicias" class="bg-river-red hover:bg-red-700 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 flex items-center justify-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                    Ver Primicias
+                </a>
+                <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
+                    Seguime en TikTok
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-river-red"></i>
+        </div>
+    </section>
+
+    <!-- Primicias / Scoop Gallery Section -->
+    <section id="primicias" class="py-20 md:py-32 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                    EXCLUSIVO
+                </span>
+                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">INFORMACIÓN DE PRIMERA MANO</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Acceso directo a las fuentes más confiables del fútbol argentino y mundial.
+                    Cada noticia verificada antes de ser publicada.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 - Transferencias -->
+                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="repeat" class="w-16 h-16 text-river-red/50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            TRANSFERENCIAS
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Movimientos del Mercado</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Información anticipada sobre fichajes, préstamos y renovaciones antes que cualquier medio tradicional.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold">+50 Primicias</span>
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 bg-river-red rounded-full border-2 border-river-dark"></div>
+                                <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-river-dark"></div>
+                                <div class="w-8 h-8 bg-yellow-500 rounded-full border-2 border-river-dark"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 - Contratos -->
+                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="file-signature" class="w-16 h-16 text-river-red/50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            CONTRATOS EXCLUSIVOS
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Detalles Contractuales</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Cifras exactas, cláusulas de rescisión y detalles que los grandes medios tardan días en confirmar.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold">+30 Exclusivas</span>
+                            <div class="flex items-center gap-1 text-green-400 text-sm">
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                98% Precisión
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 - Estadísticas -->
+                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="bar-chart-3" class="w-16 h-16 text-river-red/50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            ESTADÍSTICAS
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Análisis Profundo</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Métricas avanzadas, rendimiento de jugadores y datos que marcan la diferencia en cada análisis.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold">+100 Análisis</span>
+                            <div class="flex items-center gap-1 text-blue-400 text-sm">
+                                <i data-lucide="database" class="w-4 h-4"></i>
+                                Data Driven
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 - Rumores Confirmados -->
+                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="message-circle" class="w-16 h-16 text-river-red/50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            INSIDER INFO
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Del Vestuario al Feed</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Conexiones directas con representantes, dirigentes y jugadores para noticias de primera mano.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold">Red de Contactos</span>
+                            <div class="flex items-center gap-1 text-yellow-400 text-sm">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                                Premium
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 5 - Lesiones -->
+                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="activity" class="w-16 h-16 text-river-red/50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            PARTE MÉDICO
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Estado Físico Real</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Información sobre lesiones, tiempos de recuperación y disponibilidad antes de los comunicados oficiales.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold">Tiempo Real</span>
+                            <div class="flex items-center gap-1 text-red-400 text-sm">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                24/7
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 6 - Formaciones -->
+                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="layout-grid" class="w-16 h-16 text-river-red/50"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            TÁCTICA
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Formaciones Anticipadas</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Los 11 titulares y las decisiones tácticas del DT antes de que se hagan públicas.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold">Pre-Partido</span>
+                            <div class="flex items-center gap-1 text-purple-400 text-sm">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                                Exclusivo
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Interviews Section -->
+    <section id="entrevistas" class="py-20 md:py-32 px-4 bg-gradient-to-b from-river-dark via-black to-river-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                    CARA A CARA
+                </span>
+                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">ENTREVISTAS EXCLUSIVAS</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Conversaciones únicas con los protagonistas del fútbol argentino y mundial.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Featured Interview -->
+                <div class="lg:col-span-2 relative rounded-3xl overflow-hidden glow-red">
+                    <div class="aspect-video md:aspect-[21/9] bg-gradient-to-r from-river-red/20 to-black flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&q=80')] bg-cover bg-center opacity-30"></div>
+                        <div class="relative z-10 text-center px-4">
+                            <div class="w-20 h-20 md:w-24 md:h-24 bg-river-red/80 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-river-red transition-colors hover:scale-110 transform duration-300">
+                                <i data-lucide="play" class="w-8 h-8 md:w-10 md:h-10 ml-1"></i>
+                            </div>
+                            <h3 class="font-bebas text-3xl md:text-5xl mb-2">PRÓXIMAMENTE</h3>
+                            <p class="text-gray-300">Gran entrevista exclusiva en desarrollo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interview Card 1 -->
+                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-river-red/50 transition-all group">
+                    <div class="aspect-video bg-gradient-to-br from-blue-900/30 to-black flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80')] bg-cover bg-center opacity-40"></div>
+                        <div class="relative z-10 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-river-red/80 transition-colors cursor-pointer">
+                            <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">SELECCIÓN</span>
+                            <span class="text-gray-500 text-xs">Próximamente</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Jugadores de la Scaloneta</h3>
+                        <p class="text-gray-400 text-sm">Entrevistas con los campeones del mundo.</p>
+                    </div>
+                </div>
+                
+                <!-- Interview Card 2 -->
+                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-river-red/50 transition-all group">
+                    <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80')] bg-cover bg-center opacity-40"></div>
+                        <div class="relative z-10 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-river-red/80 transition-colors cursor-pointer">
+                            <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-river-red/20 text-river-red text-xs px-2 py-1 rounded">RIVER PLATE</span>
+                            <span class="text-gray-500 text-xs">Próximamente</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Figuras del Millonario</h3>
+                        <p class="text-gray-400 text-sm">Conversaciones exclusivas con el plantel de River.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Coverage Section -->
+    <section id="cobertura" class="py-20 md:py-32 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                    COBERTURA MUNDIAL
+                </span>
+                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">INFORMACIÓN GLOBAL</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Del Monumental a los estadios más importantes del mundo.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Argentina Column -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-river-red">
+                        <div class="w-10 h-10 bg-river-red rounded-lg flex items-center justify-center">
+                            <span class="text-xl">🇦🇷</span>
+                        </div>
+                        <h3 class="font-bebas text-2xl">ARGENTINA</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-river-red font-semibold">RIVER PLATE</span>
+                            <h4 class="font-semibold mt-1 mb-2">Últimas novedades del mercado de pases millonario</h4>
+                            <p class="text-gray-400 text-sm">Información exclusiva sobre refuerzos y posibles salidas.</p>
+                        </article>
+                        
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-blue-400 font-semibold">LIGA PROFESIONAL</span>
+                            <h4 class="font-semibold mt-1 mb-2">Movimientos en los clubes grandes</h4>
+                            <p class="text-gray-400 text-sm">Boca, Racing, Independiente y San Lorenzo.</p>
+                        </article>
+                        
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-yellow-400 font-semibold">SELECCIÓN</span>
+                            <h4 class="font-semibold mt-1 mb-2">Convocatoria y novedades de la Scaloneta</h4>
+                            <p class="text-gray-400 text-sm">Todo sobre los campeones del mundo.</p>
+                        </article>
+                    </div>
+                </div>
+                
+                <!-- Europa Column -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-river-red">
+                        <div class="w-10 h-10 bg-river-red rounded-lg flex items-center justify-center">
+                            <span class="text-xl">🇪🇺</span>
+                        </div>
+                        <h3 class="font-bebas text-2xl">EUROPA</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-purple-400 font-semibold">LA LIGA</span>
+                            <h4 class="font-semibold mt-1 mb-2">Argentinos en el fútbol español</h4>
+                            <p class="text-gray-400 text-sm">Real Madrid, Barcelona, Atlético y más.</p>
+                        </article>
+                        
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-green-400 font-semibold">SERIE A</span>
+                            <h4 class="font-semibold mt-1 mb-2">La colonia argentina en Italia</h4>
+                            <p class="text-gray-400 text-sm">Inter, Juventus, Roma y los nuestros.</p>
+                        </article>
+                        
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-red-400 font-semibold">PREMIER LEAGUE</span>
+                            <h4 class="font-semibold mt-1 mb-2">Argentinos conquistando Inglaterra</h4>
+                            <p class="text-gray-400 text-sm">Manchester, Liverpool, Chelsea y más.</p>
+                        </article>
+                    </div>
+                </div>
+                
+                <!-- América Column -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-river-red">
+                        <div class="w-10 h-10 bg-river-red rounded-lg flex items-center justify-center">
+                            <span class="text-xl">🌎</span>
+                        </div>
+                        <h3 class="font-bebas text-2xl">AMÉRICA</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-orange-400 font-semibold">BRASIL</span>
+                            <h4 class="font-semibold mt-1 mb-2">Mercado brasileño y sus movimientos</h4>
+                            <p class="text-gray-400 text-sm">Flamengo, Palmeiras y los gigantes.</p>
+                        </article>
+                        
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-cyan-400 font-semibold">MLS</span>
+                            <h4 class="font-semibold mt-1 mb-2">El fútbol crece en Estados Unidos</h4>
+                            <p class="text-gray-400 text-sm">Inter Miami, LA Galaxy y más.</p>
+                        </article>
+                        
+                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                            <span class="text-xs text-pink-400 font-semibold">LIBERTADORES</span>
+                            <h4 class="font-semibold mt-1 mb-2">La gloria continental</h4>
+                            <p class="text-gray-400 text-sm">Cobertura completa de la Copa.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media & Contact Section -->
+    <section id="contacto" class="py-20 md:py-32 px-4 bg-gradient-to-b from-river-dark to-black relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-river-red rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-river-red rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                    CONECTÁ CONMIGO
+                </span>
+                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">REDES & CONTACTO</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Seguime en redes para las últimas primicias o contactame directamente.
+                </p>
+            </div>
+            
+            <!-- TikTok CTA -->
+            <div class="bg-gradient-to-r from-[#ff0050] via-[#00f2ea] to-[#ff0050] p-[2px] rounded-3xl mb-12">
+                <div class="bg-river-dark rounded-3xl p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-shrink-0">
+                            <div class="w-24 h-24 md:w-32 md:h-32 bg-black rounded-2xl flex items-center justify-center">
+                                <svg class="w-12 h-12 md:w-16 md:h-16" viewBox="0 0 24 24" fill="white">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1 text-center md:text-left">
+                            <h3 class="font-bebas text-3xl md:text-4xl mb-2">@ALEXANDERCORSINSK8</h3>
+                            <p class="text-gray-400 mb-6">
+                                Las primicias más rápidas del fútbol argentino. Contenido exclusivo todos los días.
+                            </p>
+                            <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" 
+                               class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                                Seguir en TikTok
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
+                <h3 class="font-bebas text-2xl md:text-3xl mb-6 text-center">ENVIAME UN MENSAJE</h3>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Nombre</label>
+                            <input type="text" placeholder="Tu nombre" 
+                                   class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-river-red transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                            <input type="email" placeholder="tu@email.com" 
+                                   class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-river-red transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Asunto</label>
+                        <select class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-river-red transition-colors">
+                            <option value="" class="bg-river-dark">Selecciona un asunto</option>
+                            <option value="primicia" class="bg-river-dark">Tengo una primicia</option>
+                            <option value="colaboracion" class="bg-river-dark">Propuesta de colaboración</option>
+                            <option value="consulta" class="bg-river-dark">Consulta general</option>
+                            <option value="otro" class="bg-river-dark">Otro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Mensaje</label>
+                        <textarea rows="4" placeholder="Tu mensaje..." 
+                                  class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-river-red transition-colors resize-none"></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-river-red hover:bg-red-700 text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                        Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-river-red rounded-full flex items-center justify-center font-bebas text-xl">
+                        AOC
+                    </div>
+                    <div>
+                        <p class="font-bebas text-xl">ALEXANDER OLEG CORSINSKY</p>
+                        <p class="text-gray-400 text-sm">Periodismo Deportivo</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" 
+                       class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                
+                <p class="text-gray-500 text-sm">
+                    © 2024 AOC Periodismo. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky header background on scroll
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/90', 'backdrop-blur-lg', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-black/90', 'backdrop-blur-lg', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+        
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Mensaje enviado! Te responderé lo antes posible.');
+        });
+    </script>
+</body>
+</html>
