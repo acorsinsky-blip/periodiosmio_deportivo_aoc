@@ -68,6 +68,61 @@
             height: 100%;
             background: #E30613;
         }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #E30613;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .access-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .access-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(227,6,19,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .access-card:hover::before {
+            left: 100%;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="bg-river-dark text-white font-inter">
@@ -83,10 +138,10 @@
                     <span class="font-bebas text-xl md:text-2xl tracking-wider hidden sm:block">PERIODISMO DEPORTIVO</span>
                 </a>
                 
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#primicias" class="hover:text-river-red transition-colors font-medium">Primicias</a>
-                    <a href="#entrevistas" class="hover:text-river-red transition-colors font-medium">Entrevistas</a>
-                    <a href="#cobertura" class="hover:text-river-red transition-colors font-medium">Cobertura</a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#primicias" class="nav-link hover:text-river-red font-medium">Primicias</a>
+                    <a href="#entrevistas" class="nav-link hover:text-river-red font-medium">Entrevistas</a>
+                    <a href="#cobertura" class="nav-link hover:text-river-red font-medium">Cobertura</a>
                     <a href="#contacto" class="bg-river-red px-5 py-2 rounded font-semibold hover:bg-red-700 transition-colors">Contacto</a>
                 </div>
                 
@@ -121,7 +176,7 @@
         <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
             <div class="mb-6 inline-flex items-center gap-2 bg-river-red/20 border border-river-red/50 px-4 py-2 rounded-full">
                 <span class="w-2 h-2 bg-river-red rounded-full animate-pulse"></span>
-                <span class="text-sm font-medium">EN VIVO - Cubriendo el fútbol mundial</span>
+                <span class="text-sm font-medium">EN VIVO - Cubriendo el futbol mundial</span>
             </div>
             
             <h1 class="font-bebas text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight mb-4 gradient-text">
@@ -129,13 +184,13 @@
             </h1>
             
             <p class="text-xl sm:text-2xl md:text-3xl font-light text-gray-300 mb-6">
-                18 años | <span class="text-river-red font-semibold">Informando la pasión del fútbol</span>
+                18 anos | <span class="text-river-red font-semibold">Informando la pasion del futbol</span>
             </p>
             
             <div class="flex flex-wrap justify-center gap-3 mb-8">
                 <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
                     <i data-lucide="trophy" class="w-4 h-4 text-river-red"></i>
-                    Fútbol Argentino
+                    Futbol Argentino
                 </span>
                 <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
                     <i data-lucide="shield" class="w-4 h-4 text-river-red"></i>
@@ -143,7 +198,7 @@
                 </span>
                 <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
                     <i data-lucide="flag" class="w-4 h-4 text-river-red"></i>
-                    Selección Argentina
+                    Seleccion Argentina
                 </span>
                 <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full text-sm flex items-center gap-2">
                     <i data-lucide="globe" class="w-4 h-4 text-river-red"></i>
@@ -161,7 +216,7 @@
                     <i data-lucide="zap" class="w-5 h-5"></i>
                     Ver Primicias
                 </a>
-                <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/30 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 flex items-center justify-center gap-2">
+                <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 border border-white/30 px-8 py-4 rounded font-bold text-lg transition-all hover:scale-105 flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                     </svg>
@@ -176,26 +231,80 @@
         </div>
     </section>
 
-    <!-- Primicias / Scoop Gallery Section -->
+    <!-- News Hub Navigation -->
+    <section class="py-8 px-4 bg-black/50 border-y border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                <a href="https://www.ligaprofesional.ar/torneo-apertura-2026/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>Liga ARG</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://www.afa.com.ar/es/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>Seleccion Arg</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://www.cariverplate.com.ar/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-river-red/20 hover:bg-river-red/40 border border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium text-river-red">
+                    <span>River Plate</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://www.laliga.com/es-AR" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>LaLiga</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://www.premierleague.com/en" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>Premier League</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://www.legaseriea.it/serie-a" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>Serie A</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://ge.globo.com/futebol/brasileirao-serie-a/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>Brasileirao</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://www.conmebol.com/libertadores/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>Libertadores</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+                <a href="https://es.mlssoccer.com/" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-white/5 hover:bg-river-red/20 border border-white/10 hover:border-river-red/50 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <span>MLS</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Primicias / Access Cards Section -->
     <section id="primicias" class="py-20 md:py-32 px-4 relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
                     EXCLUSIVO
                 </span>
-                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">INFORMACIÓN DE PRIMERA MANO</h2>
+                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">INFORMACION DE PRIMERA MANO</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
-                    Acceso directo a las fuentes más confiables del fútbol argentino y mundial.
+                    Acceso directo a las fuentes mas confiables del futbol argentino y mundial.
                     Cada noticia verificada antes de ser publicada.
                 </p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 - Transferencias -->
-                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                <!-- Card 1 - Ultimos Fichajes -->
+                <a href="https://www.transfermarkt.es/statistik/neuestetransfers" target="_blank" rel="noopener noreferrer" 
+                   class="access-card bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10 hover:border-river-red/50 group block">
                     <div class="relative">
                         <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
-                            <i data-lucide="repeat" class="w-16 h-16 text-river-red/50"></i>
+                            <i data-lucide="repeat" class="w-16 h-16 text-river-red/50 group-hover:text-river-red transition-colors"></i>
                         </div>
                         <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <i data-lucide="check-circle" class="w-3 h-3"></i>
@@ -206,26 +315,28 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Movimientos del Mercado</h3>
+                        <h3 class="font-bold text-xl mb-2 group-hover:text-river-red transition-colors">Ultimos Fichajes</h3>
                         <p class="text-gray-400 text-sm mb-4">
-                            Información anticipada sobre fichajes, préstamos y renovaciones antes que cualquier medio tradicional.
+                            Informacion anticipada sobre fichajes, prestamos y renovaciones antes que cualquier medio tradicional.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-river-red text-sm font-semibold">+50 Primicias</span>
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 bg-river-red rounded-full border-2 border-river-dark"></div>
-                                <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-river-dark"></div>
-                                <div class="w-8 h-8 bg-yellow-500 rounded-full border-2 border-river-dark"></div>
+                            <span class="text-river-red text-sm font-semibold flex items-center gap-2">
+                                Acceder <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                            <div class="flex items-center gap-1 text-green-400 text-sm">
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                En Vivo
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Card 2 - Contratos -->
-                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                <!-- Card 2 - Analisis de Contratos -->
+                <a href="https://www.webdoxclm.com/blog/contratos-de-futbol-todo-lo-que-necesitas-saber" target="_blank" rel="noopener noreferrer" 
+                   class="access-card bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10 hover:border-river-red/50 group block">
                     <div class="relative">
                         <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
-                            <i data-lucide="file-signature" class="w-16 h-16 text-river-red/50"></i>
+                            <i data-lucide="file-text" class="w-16 h-16 text-river-red/50 group-hover:text-river-red transition-colors"></i>
                         </div>
                         <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <i data-lucide="check-circle" class="w-3 h-3"></i>
@@ -236,54 +347,92 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Detalles Contractuales</h3>
+                        <h3 class="font-bold text-xl mb-2 group-hover:text-river-red transition-colors">Analisis de Contratos</h3>
                         <p class="text-gray-400 text-sm mb-4">
-                            Cifras exactas, cláusulas de rescisión y detalles que los grandes medios tardan días en confirmar.
+                            Cifras exactas, clausulas de rescision y detalles que los grandes medios tardan dias en confirmar.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-river-red text-sm font-semibold">+30 Exclusivas</span>
-                            <div class="flex items-center gap-1 text-green-400 text-sm">
-                                <i data-lucide="trending-up" class="w-4 h-4"></i>
-                                98% Precisión
+                            <span class="text-river-red text-sm font-semibold flex items-center gap-2">
+                                Acceder <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                            <div class="flex items-center gap-1 text-blue-400 text-sm">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                98% Precision
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Card 3 - Estadísticas -->
-                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                <!-- Card 3 - Reporte de Lesionados -->
+                <a href="https://www.transfermarkt.com.ar/liga-profesional-de-futbol/verletztespieler/wettbewerb/AR1N" target="_blank" rel="noopener noreferrer" 
+                   class="access-card bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10 hover:border-river-red/50 group block">
                     <div class="relative">
                         <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
-                            <i data-lucide="bar-chart-3" class="w-16 h-16 text-river-red/50"></i>
+                            <i data-lucide="activity" class="w-16 h-16 text-river-red/50 group-hover:text-river-red transition-colors"></i>
                         </div>
                         <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <i data-lucide="check-circle" class="w-3 h-3"></i>
                             VERIFICADO
                         </div>
                         <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
-                            ESTADÍSTICAS
+                            PARTE MEDICO
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Análisis Profundo</h3>
+                        <h3 class="font-bold text-xl mb-2 group-hover:text-river-red transition-colors">Reporte de Lesionados</h3>
                         <p class="text-gray-400 text-sm mb-4">
-                            Métricas avanzadas, rendimiento de jugadores y datos que marcan la diferencia en cada análisis.
+                            Informacion sobre lesiones, tiempos de recuperacion y disponibilidad antes de los comunicados oficiales.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-river-red text-sm font-semibold">+100 Análisis</span>
-                            <div class="flex items-center gap-1 text-blue-400 text-sm">
-                                <i data-lucide="database" class="w-4 h-4"></i>
-                                Data Driven
+                            <span class="text-river-red text-sm font-semibold flex items-center gap-2">
+                                Acceder <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                            <div class="flex items-center gap-1 text-red-400 text-sm">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                24/7
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Card 4 - Rumores Confirmados -->
-                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                <!-- Card 4 - Onces Probables -->
+                <a href="https://www.ole.com.ar/tema/formaciones.html" target="_blank" rel="noopener noreferrer" 
+                   class="access-card bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10 hover:border-river-red/50 group block">
                     <div class="relative">
                         <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
-                            <i data-lucide="message-circle" class="w-16 h-16 text-river-red/50"></i>
+                            <i data-lucide="layout-grid" class="w-16 h-16 text-river-red/50 group-hover:text-river-red transition-colors"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i>
+                            VERIFICADO
+                        </div>
+                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
+                            TACTICA
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 group-hover:text-river-red transition-colors">Onces Probables</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Los 11 titulares y las decisiones tacticas del DT antes de que se hagan publicas.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-river-red text-sm font-semibold flex items-center gap-2">
+                                Acceder <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                            <div class="flex items-center gap-1 text-purple-400 text-sm">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                                Pre-Partido
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Card 5 - Contenido Exclusivo -->
+                <a href="https://proyectaplayers.com.ar/" target="_blank" rel="noopener noreferrer" 
+                   class="access-card bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10 hover:border-river-red/50 group block">
+                    <div class="relative">
+                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
+                            <i data-lucide="message-circle" class="w-16 h-16 text-river-red/50 group-hover:text-river-red transition-colors"></i>
                         </div>
                         <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <i data-lucide="check-circle" class="w-3 h-3"></i>
@@ -294,73 +443,46 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Del Vestuario al Feed</h3>
+                        <h3 class="font-bold text-xl mb-2 group-hover:text-river-red transition-colors">Contenido Exclusivo</h3>
                         <p class="text-gray-400 text-sm mb-4">
-                            Conexiones directas con representantes, dirigentes y jugadores para noticias de primera mano.
+                            Del vestuario al feed. Conexiones directas con representantes, dirigentes y jugadores.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-river-red text-sm font-semibold">Red de Contactos</span>
+                            <span class="text-river-red text-sm font-semibold flex items-center gap-2">
+                                Acceder <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
                             <div class="flex items-center gap-1 text-yellow-400 text-sm">
                                 <i data-lucide="users" class="w-4 h-4"></i>
                                 Premium
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Card 5 - Lesiones -->
-                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
+                <!-- Card 6 - Estadisticas -->
+                <div class="access-card bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10 hover:border-river-red/50 group">
                     <div class="relative">
                         <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
-                            <i data-lucide="activity" class="w-16 h-16 text-river-red/50"></i>
+                            <i data-lucide="bar-chart-3" class="w-16 h-16 text-river-red/50 group-hover:text-river-red transition-colors"></i>
                         </div>
                         <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                             <i data-lucide="check-circle" class="w-3 h-3"></i>
                             VERIFICADO
                         </div>
                         <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
-                            PARTE MÉDICO
+                            ESTADISTICAS
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Estado Físico Real</h3>
+                        <h3 class="font-bold text-xl mb-2 group-hover:text-river-red transition-colors">Analisis Profundo</h3>
                         <p class="text-gray-400 text-sm mb-4">
-                            Información sobre lesiones, tiempos de recuperación y disponibilidad antes de los comunicados oficiales.
+                            Metricas avanzadas, rendimiento de jugadores y datos que marcan la diferencia en cada analisis.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-river-red text-sm font-semibold">Tiempo Real</span>
-                            <div class="flex items-center gap-1 text-red-400 text-sm">
-                                <i data-lucide="clock" class="w-4 h-4"></i>
-                                24/7
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 6 - Formaciones -->
-                <div class="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl overflow-hidden card-hover transition-all duration-300 border border-white/10">
-                    <div class="relative">
-                        <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center">
-                            <i data-lucide="layout-grid" class="w-16 h-16 text-river-red/50"></i>
-                        </div>
-                        <div class="absolute top-4 right-4 badge-verified bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                            <i data-lucide="check-circle" class="w-3 h-3"></i>
-                            VERIFICADO
-                        </div>
-                        <div class="absolute top-4 left-4 bg-river-red text-white text-xs font-bold px-3 py-1 rounded">
-                            TÁCTICA
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2">Formaciones Anticipadas</h3>
-                        <p class="text-gray-400 text-sm mb-4">
-                            Los 11 titulares y las decisiones tácticas del DT antes de que se hagan públicas.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-river-red text-sm font-semibold">Pre-Partido</span>
-                            <div class="flex items-center gap-1 text-purple-400 text-sm">
-                                <i data-lucide="eye" class="w-4 h-4"></i>
-                                Exclusivo
+                            <span class="text-river-red text-sm font-semibold">+100 Analisis</span>
+                            <div class="flex items-center gap-1 text-cyan-400 text-sm">
+                                <i data-lucide="database" class="w-4 h-4"></i>
+                                Data Driven
                             </div>
                         </div>
                     </div>
@@ -369,7 +491,7 @@
         </div>
     </section>
 
-    <!-- Exclusive Interviews Section -->
+    <!-- Exclusive Interviews Section with YouTube Embeds -->
     <section id="entrevistas" class="py-20 md:py-32 px-4 bg-gradient-to-b from-river-dark via-black to-river-dark">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -378,58 +500,50 @@
                 </span>
                 <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">ENTREVISTAS EXCLUSIVAS</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
-                    Conversaciones únicas con los protagonistas del fútbol argentino y mundial.
+                    Conversaciones unicas con los protagonistas del futbol argentino y mundial.
                 </p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Featured Interview -->
-                <div class="lg:col-span-2 relative rounded-3xl overflow-hidden glow-red">
-                    <div class="aspect-video md:aspect-[21/9] bg-gradient-to-r from-river-red/20 to-black flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&q=80')] bg-cover bg-center opacity-30"></div>
-                        <div class="relative z-10 text-center px-4">
-                            <div class="w-20 h-20 md:w-24 md:h-24 bg-river-red/80 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer hover:bg-river-red transition-colors hover:scale-110 transform duration-300">
-                                <i data-lucide="play" class="w-8 h-8 md:w-10 md:h-10 ml-1"></i>
-                            </div>
-                            <h3 class="font-bebas text-3xl md:text-5xl mb-2">PRÓXIMAMENTE</h3>
-                            <p class="text-gray-300">Gran entrevista exclusiva en desarrollo</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Interview Card 1 -->
-                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-river-red/50 transition-all group">
-                    <div class="aspect-video bg-gradient-to-br from-blue-900/30 to-black flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80')] bg-cover bg-center opacity-40"></div>
-                        <div class="relative z-10 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-river-red/80 transition-colors cursor-pointer">
-                            <i data-lucide="play" class="w-6 h-6 ml-1"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">SELECCIÓN</span>
-                            <span class="text-gray-500 text-xs">Próximamente</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">Jugadores de la Scaloneta</h3>
-                        <p class="text-gray-400 text-sm">Entrevistas con los campeones del mundo.</p>
-                    </div>
-                </div>
-                
-                <!-- Interview Card 2 -->
-                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-river-red/50 transition-all group">
-                    <div class="aspect-video bg-gradient-to-br from-river-red/30 to-black flex items-center justify-center relative">
-                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80')] bg-cover bg-center opacity-40"></div>
-                        <div class="relative z-10 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-river-red/80 transition-colors cursor-pointer">
-                            <i data-lucide="play" class="w-6 h-6 ml-1"></i>
-                        </div>
+                <!-- Video 1 - Figuras del Millonario -->
+                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-river-red/50 transition-all">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/0l1-kgE0jx0" 
+                            title="Figuras del Millonario"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center gap-2 mb-3">
                             <span class="bg-river-red/20 text-river-red text-xs px-2 py-1 rounded">RIVER PLATE</span>
-                            <span class="text-gray-500 text-xs">Próximamente</span>
+                            <span class="text-gray-500 text-xs">Video Destacado</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Figuras del Millonario</h3>
-                        <p class="text-gray-400 text-sm">Conversaciones exclusivas con el plantel de River.</p>
+                        <p class="text-gray-400 text-sm">Conversaciones exclusivas con el plantel de River Plate.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 2 - Jugadores de la Scaloneta -->
+                <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-river-red/50 transition-all">
+                    <div class="video-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/gqOPScoROv4" 
+                            title="Jugadores de la Scaloneta"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">SELECCION</span>
+                            <span class="text-gray-500 text-xs">Video Destacado</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Jugadores de la Scaloneta</h3>
+                        <p class="text-gray-400 text-sm">Entrevistas con los campeones del mundo.</p>
                     </div>
                 </div>
             </div>
@@ -443,9 +557,9 @@
                 <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
                     COBERTURA MUNDIAL
                 </span>
-                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">INFORMACIÓN GLOBAL</h2>
+                <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">INFORMACION GLOBAL</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
-                    Del Monumental a los estadios más importantes del mundo.
+                    Del Monumental a los estadios mas importantes del mundo.
                 </p>
             </div>
             
@@ -454,29 +568,29 @@
                 <div>
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-river-red">
                         <div class="w-10 h-10 bg-river-red rounded-lg flex items-center justify-center">
-                            <span class="text-xl">🇦🇷</span>
+                            <span class="text-xl">&#127462;&#127479;</span>
                         </div>
                         <h3 class="font-bebas text-2xl">ARGENTINA</h3>
                     </div>
                     
                     <div class="space-y-4">
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://www.cariverplate.com.ar/" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-river-red font-semibold">RIVER PLATE</span>
-                            <h4 class="font-semibold mt-1 mb-2">Últimas novedades del mercado de pases millonario</h4>
-                            <p class="text-gray-400 text-sm">Información exclusiva sobre refuerzos y posibles salidas.</p>
-                        </article>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">Ultimas novedades del mercado millonario</h4>
+                            <p class="text-gray-400 text-sm">Informacion exclusiva sobre refuerzos y posibles salidas.</p>
+                        </a>
                         
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://www.ligaprofesional.ar/torneo-apertura-2026/" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-blue-400 font-semibold">LIGA PROFESIONAL</span>
-                            <h4 class="font-semibold mt-1 mb-2">Movimientos en los clubes grandes</h4>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">Movimientos en los clubes grandes</h4>
                             <p class="text-gray-400 text-sm">Boca, Racing, Independiente y San Lorenzo.</p>
-                        </article>
+                        </a>
                         
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
-                            <span class="text-xs text-yellow-400 font-semibold">SELECCIÓN</span>
-                            <h4 class="font-semibold mt-1 mb-2">Convocatoria y novedades de la Scaloneta</h4>
+                        <a href="https://www.afa.com.ar/es/" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
+                            <span class="text-xs text-yellow-400 font-semibold">SELECCION</span>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">Convocatoria y novedades de la Scaloneta</h4>
                             <p class="text-gray-400 text-sm">Todo sobre los campeones del mundo.</p>
-                        </article>
+                        </a>
                     </div>
                 </div>
                 
@@ -484,59 +598,59 @@
                 <div>
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-river-red">
                         <div class="w-10 h-10 bg-river-red rounded-lg flex items-center justify-center">
-                            <span class="text-xl">🇪🇺</span>
+                            <span class="text-xl">&#127466;&#127482;</span>
                         </div>
                         <h3 class="font-bebas text-2xl">EUROPA</h3>
                     </div>
                     
                     <div class="space-y-4">
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://www.laliga.com/es-AR" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-purple-400 font-semibold">LA LIGA</span>
-                            <h4 class="font-semibold mt-1 mb-2">Argentinos en el fútbol español</h4>
-                            <p class="text-gray-400 text-sm">Real Madrid, Barcelona, Atlético y más.</p>
-                        </article>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">Argentinos en el futbol espanol</h4>
+                            <p class="text-gray-400 text-sm">Real Madrid, Barcelona, Atletico y mas.</p>
+                        </a>
                         
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://www.legaseriea.it/serie-a" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-green-400 font-semibold">SERIE A</span>
-                            <h4 class="font-semibold mt-1 mb-2">La colonia argentina en Italia</h4>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">La colonia argentina en Italia</h4>
                             <p class="text-gray-400 text-sm">Inter, Juventus, Roma y los nuestros.</p>
-                        </article>
+                        </a>
                         
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://www.premierleague.com/en" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-red-400 font-semibold">PREMIER LEAGUE</span>
-                            <h4 class="font-semibold mt-1 mb-2">Argentinos conquistando Inglaterra</h4>
-                            <p class="text-gray-400 text-sm">Manchester, Liverpool, Chelsea y más.</p>
-                        </article>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">Argentinos conquistando Inglaterra</h4>
+                            <p class="text-gray-400 text-sm">Manchester, Liverpool, Chelsea y mas.</p>
+                        </a>
                     </div>
                 </div>
                 
-                <!-- América Column -->
+                <!-- America Column -->
                 <div>
                     <div class="flex items-center gap-3 mb-6 pb-4 border-b border-river-red">
                         <div class="w-10 h-10 bg-river-red rounded-lg flex items-center justify-center">
-                            <span class="text-xl">🌎</span>
+                            <span class="text-xl">&#127758;</span>
                         </div>
-                        <h3 class="font-bebas text-2xl">AMÉRICA</h3>
+                        <h3 class="font-bebas text-2xl">AMERICA</h3>
                     </div>
                     
                     <div class="space-y-4">
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://ge.globo.com/futebol/brasileirao-serie-a/" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-orange-400 font-semibold">BRASIL</span>
-                            <h4 class="font-semibold mt-1 mb-2">Mercado brasileño y sus movimientos</h4>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">Mercado brasileno y sus movimientos</h4>
                             <p class="text-gray-400 text-sm">Flamengo, Palmeiras y los gigantes.</p>
-                        </article>
+                        </a>
                         
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://es.mlssoccer.com/" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-cyan-400 font-semibold">MLS</span>
-                            <h4 class="font-semibold mt-1 mb-2">El fútbol crece en Estados Unidos</h4>
-                            <p class="text-gray-400 text-sm">Inter Miami, LA Galaxy y más.</p>
-                        </article>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">El futbol crece en Estados Unidos</h4>
+                            <p class="text-gray-400 text-sm">Inter Miami, LA Galaxy y mas.</p>
+                        </a>
                         
-                        <article class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-colors cursor-pointer">
+                        <a href="https://www.conmebol.com/libertadores/" target="_blank" rel="noopener noreferrer" class="news-card relative bg-white/5 p-4 rounded-r-lg pl-6 hover:bg-white/10 transition-all cursor-pointer block group">
                             <span class="text-xs text-pink-400 font-semibold">LIBERTADORES</span>
-                            <h4 class="font-semibold mt-1 mb-2">La gloria continental</h4>
+                            <h4 class="font-semibold mt-1 mb-2 group-hover:text-river-red transition-colors">La gloria continental</h4>
                             <p class="text-gray-400 text-sm">Cobertura completa de la Copa.</p>
-                        </article>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -554,39 +668,74 @@
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="text-center mb-16">
                 <span class="inline-block bg-river-red/20 text-river-red px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                    CONECTÁ CONMIGO
+                    CONECTA CONMIGO
                 </span>
                 <h2 class="font-bebas text-4xl sm:text-5xl md:text-6xl mb-4">REDES & CONTACTO</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
-                    Seguime en redes para las últimas primicias o contactame directamente.
+                    Seguime en redes para las ultimas primicias o contactame directamente.
                 </p>
             </div>
             
-            <!-- TikTok CTA -->
-            <div class="bg-gradient-to-r from-[#ff0050] via-[#00f2ea] to-[#ff0050] p-[2px] rounded-3xl mb-12">
-                <div class="bg-river-dark rounded-3xl p-8 md:p-12">
-                    <div class="flex flex-col md:flex-row items-center gap-8">
-                        <div class="flex-shrink-0">
-                            <div class="w-24 h-24 md:w-32 md:h-32 bg-black rounded-2xl flex items-center justify-center">
-                                <svg class="w-12 h-12 md:w-16 md:h-16" viewBox="0 0 24 24" fill="white">
+            <!-- Social Media Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <!-- TikTok Card -->
+                <div class="bg-gradient-to-r from-[#ff0050] via-[#00f2ea] to-[#ff0050] p-[2px] rounded-2xl">
+                    <div class="bg-river-dark rounded-2xl p-6 h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center">
+                                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="white">
                                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                                 </svg>
                             </div>
+                            <div>
+                                <h3 class="font-bebas text-xl">TikTok</h3>
+                                <p class="text-gray-400 text-sm">@alexandercorsinsk8</p>
+                            </div>
                         </div>
-                        <div class="flex-1 text-center md:text-left">
-                            <h3 class="font-bebas text-3xl md:text-4xl mb-2">@ALEXANDERCORSINSK8</h3>
-                            <p class="text-gray-400 mb-6">
-                                Las primicias más rápidas del fútbol argentino. Contenido exclusivo todos los días.
-                            </p>
-                            <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" 
-                               class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
-                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                                </svg>
-                                Seguir en TikTok
-                            </a>
-                        </div>
+                        <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" rel="noopener noreferrer" 
+                           class="block w-full bg-white text-black text-center px-6 py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                            Seguir
+                        </a>
                     </div>
+                </div>
+                
+                <!-- Instagram Card -->
+                <div class="bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] p-[2px] rounded-2xl">
+                    <div class="bg-river-dark rounded-2xl p-6 h-full">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] rounded-xl flex items-center justify-center">
+                                <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bebas text-xl">Instagram</h3>
+                                <p class="text-gray-400 text-sm">@acorsinsky_2007</p>
+                            </div>
+                        </div>
+                        <a href="https://www.instagram.com/acorsinsky_2007/" target="_blank" rel="noopener noreferrer" 
+                           class="block w-full bg-white text-black text-center px-6 py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                            Seguir
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WhatsApp CTA -->
+            <div class="bg-gradient-to-r from-green-600 to-green-500 rounded-2xl p-8 md:p-10 mb-12 text-center">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                        <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="font-bebas text-2xl md:text-3xl mb-1">Contacto Directo</h3>
+                        <p class="text-green-100">+54 9 11 3372-9768</p>
+                    </div>
+                    <a href="https://wa.me/5491133729768" target="_blank" rel="noopener noreferrer" 
+                       class="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Chat en WhatsApp
+                    </a>
                 </div>
             </div>
             
@@ -611,7 +760,7 @@
                         <select class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-river-red transition-colors">
                             <option value="" class="bg-river-dark">Selecciona un asunto</option>
                             <option value="primicia" class="bg-river-dark">Tengo una primicia</option>
-                            <option value="colaboracion" class="bg-river-dark">Propuesta de colaboración</option>
+                            <option value="colaboracion" class="bg-river-dark">Propuesta de colaboracion</option>
                             <option value="consulta" class="bg-river-dark">Consulta general</option>
                             <option value="otro" class="bg-river-dark">Otro</option>
                         </select>
@@ -641,27 +790,29 @@
                     </div>
                     <div>
                         <p class="font-bebas text-xl">ALEXANDER OLEG CORSINSKY</p>
-                        <p class="text-gray-400 text-sm">Periodismo Deportivo</p>
+                        <p class="text-gray-400 text-sm">18 anos | Periodismo Deportivo</p>
                     </div>
                 </div>
                 
-                <div class="flex items-center gap-6">
-                    <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" 
+                <div class="flex items-center gap-4">
+                    <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" rel="noopener noreferrer" 
                        class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                         </svg>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
-                        <i data-lucide="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
+                    <a href="https://www.instagram.com/acorsinsky_2007/" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-river-red transition-colors">
                         <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://wa.me/5491133729768" target="_blank" rel="noopener noreferrer" 
+                       class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
                     </a>
                 </div>
                 
                 <p class="text-gray-500 text-sm">
-                    © 2024 AOC Periodismo. Todos los derechos reservados.
+                    &copy; 2024 AOC Periodismo. Todos los derechos reservados.
                 </p>
             </div>
         </div>
@@ -702,7 +853,7 @@
         // Form submission handler
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('¡Mensaje enviado! Te responderé lo antes posible.');
+            alert('Mensaje enviado! Te respondere lo antes posible.');
         });
     </script>
 </body>
