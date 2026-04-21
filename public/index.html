@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Oleg Corsinsky | Periodista Deportivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --river-red: #E30613;
+            --black: #000000;
+            --white: #FFFFFF;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-400: #a3a3a3;
+            --gray-600: #525252;
+            --gray-800: #262626;
+            --gray-900: #171717;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        .font-bebas {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--river-red);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--river-red);
+        }
+
+        .nav-links .btn-contact {
+            background: var(--river-red);
+            padding: 0.5rem 1.25rem;
+            border-radius: 4px;
+        }
+
+        .nav-links .btn-contact:hover {
+            background: #c00510;
+            color: var(--white);
+        }
+
+        .mobile-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--river-red);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: none;
+            }
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 8rem 1.5rem 4rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-100) 100%);
+            color: var(--black);
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .profile-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .profile-image-wrapper {
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .profile-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .profile-title .red {
+            color: var(--river-red);
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--river-red);
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #22c55e;
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--white);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .profile-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .profile-content {
+                text-align: left;
+            }
+        }
+
+        .profile-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-age {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--river-red);
+            margin-bottom: 1rem;
+        }
+
+        .bio-text {
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .bio-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .bio-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(227, 6, 19, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bio-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--river-red);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .bio-item-title {
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.25rem;
+        }
+
+        .bio-item-text {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--river-red);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+        }
+
+        /* News Hub Section */
+        .news-hub {
+            padding: 3rem 1.5rem;
+            background: var(--gray-900);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title .red {
+            color: var(--river-red);
+        }
+
+        .news-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .news-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .news-grid {
+                grid-template-columns: repeat(9, 1fr);
+            }
+        }
+
+        .news-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem 0.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .news-link:hover {
+            background: var(--river-red);
+            border-color: var(--river-red);
+            transform: translateY(-2px);
+        }
+
+        /* Data Cards Section */
+        .data-section {
+            padding: 4rem 1.5rem;
+            background: var(--black);
+        }
+
+        .data-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .data-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .data-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .data-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .data-card:hover {
+            border-color: rgba(227, 6, 19, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(227, 6, 19, 0.2);
+        }
+
+        .data-card-header {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(227, 6, 19, 0.3), var(--black));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .data-card-header svg {
+            width: 64px;
+            height: 64px;
+            stroke: rgba(227, 6, 19, 0.5);
+            fill: none;
+            stroke-width: 1.5;
+            transition: stroke 0.3s;
+        }
+
+        .data-card:hover .data-card-header svg {
+            stroke: var(--river-red);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #22c55e;
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-badge svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--white);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--river-red);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        .data-card-body {
+            padding: 1.5rem;
+        }
+
+        .data-card-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .data-card:hover .data-card-title {
+            color: var(--river-red);
+        }
+
+        .data-card-desc {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-card-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--river-red);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .data-card-footer svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--river-red);
+            fill: none;
+            transition: transform 0.3s;
+        }
+
+        .data-card:hover .data-card-footer svg {
+            transform: translateX(5px);
+        }
+
+        /* Multimedia Section */
+        .multimedia-section {
+            padding: 4rem 1.5rem;
+            background: var(--gray-900);
+        }
+
+        .video-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.25rem;
+        }
+
+        .video-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .video-category {
+            color: var(--river-red);
+            font-size: 0.875rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 1.5rem;
+            background: var(--black);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 640px) {
+            .social-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .social-card svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .social-card.tiktok:hover {
+            background: #000;
+            border-color: #00f2ea;
+            color: #00f2ea;
+        }
+
+        .social-card.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-color: transparent;
+        }
+
+        .social-card.whatsapp:hover {
+            background: #25D366;
+            border-color: #25D366;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 1.5rem;
+            background: var(--gray-900);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        .footer-text span {
+            color: var(--river-red);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo"><span>AOC</span> - Periodismo Deportivo</a>
+            <div class="nav-links">
+                <a href="#sobre-mi">Sobre Mi</a>
+                <a href="#primicias">Primicias</a>
+                <a href="#multimedia">Multimedia</a>
+                <a href="#contacto" class="btn-contact">Contacto</a>
+            </div>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#sobre-mi" onclick="toggleMenu()">Sobre Mi</a>
+            <a href="#primicias" onclick="toggleMenu()">Primicias</a>
+            <a href="#multimedia" onclick="toggleMenu()">Multimedia</a>
+            <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section" id="sobre-mi">
+        <div class="profile-container">
+            <div class="profile-image-wrapper">
+                <div class="profile-title">
+                    <span class="red">PERIODISTA</span> PROFESIONAL
+                </div>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-13%20at%2020.05.44-M9o7pNebJEeobooTHGwX5mUfUwOG8k.jpeg" 
+                     alt="Alexander Oleg Corsinsky" 
+                     class="profile-image">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    ACTIVO
+                </div>
+            </div>
+            <div class="profile-content">
+                <h1 class="profile-name">Alexander Oleg Corsinsky</h1>
+                <p class="profile-age">18 anos | Nacido el 05/12/2007</p>
+                
+                <h2 class="bio-title">Sobre mi Pasion</h2>
+                
+                <div class="bio-item">
+                    <div class="bio-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <div>
+                        <div class="bio-item-title">Formacion Academica</div>
+                        <p class="bio-item-text">Cursando estudios secundarios con orientacion en Comunicacion Social. Complemento mi formacion con cursos de periodismo deportivo online y analisis de datos en el futbol.</p>
+                    </div>
+                </div>
+                
+                <div class="bio-item">
+                    <div class="bio-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    </div>
+                    <div>
+                        <div class="bio-item-title">Hincha de River Plate</div>
+                        <p class="bio-item-text">Todo empezo en el Monumental. Tenia 8 anos cuando vi a River ganar una Libertadores y supe que queria contar estas historias. La banda roja corre por mis venas.</p>
+                    </div>
+                </div>
+                
+                <div class="bio-item">
+                    <div class="bio-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                    </div>
+                    <div>
+                        <div class="bio-item-title">Obsesion por la Data</div>
+                        <p class="bio-item-text">Me obsesionan los numeros, las estadisticas y los detalles que transforman rumores en noticias confirmadas. En este mundo de fake news, mi compromiso es con la verdad.</p>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Anos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Primicias</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Cobertura</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Hub Section -->
+    <section class="news-hub">
+        <h2 class="section-title"><span class="red">HUB</span> DE NOTICIAS</h2>
+        <div class="news-grid">
+            <a href="https://www.ligaprofesional.ar/torneo-apertura-2026/" target="_blank" rel="noopener noreferrer" class="news-link">Liga ARG</a>
+            <a href="https://www.afa.com.ar/es/" target="_blank" rel="noopener noreferrer" class="news-link">Seleccion</a>
+            <a href="https://www.cariverplate.com.ar/" target="_blank" rel="noopener noreferrer" class="news-link">River Plate</a>
+            <a href="https://www.laliga.com/es-AR" target="_blank" rel="noopener noreferrer" class="news-link">LaLiga</a>
+            <a href="https://www.premierleague.com/home" target="_blank" rel="noopener noreferrer" class="news-link">Premier</a>
+            <a href="https://www.legaseriea.it/es" target="_blank" rel="noopener noreferrer" class="news-link">Serie A</a>
+            <a href="https://www.cbf.com.br/futebol-brasileiro/competicoes/campeonato-brasileiro-serie-a" target="_blank" rel="noopener noreferrer" class="news-link">Brasileirao</a>
+            <a href="https://www.conmebol.com/es/libertadores/" target="_blank" rel="noopener noreferrer" class="news-link">Libertadores</a>
+            <a href="https://www.mlssoccer.com/" target="_blank" rel="noopener noreferrer" class="news-link">MLS</a>
+        </div>
+    </section>
+
+    <!-- Data & Exclusive Content Section -->
+    <section class="data-section" id="primicias">
+        <h2 class="section-title"><span class="red">INFORMACION</span> DE PRIMERA MANO</h2>
+        <div class="data-grid">
+            <!-- Card 1 -->
+            <a href="https://www.transfermarkt.es/statistik/neuestetransfers" target="_blank" rel="noopener noreferrer" class="data-card">
+                <div class="data-card-header">
+                    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    <div class="card-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        VERIFICADO
+                    </div>
+                    <div class="card-tag">MERCADO</div>
+                </div>
+                <div class="data-card-body">
+                    <h3 class="data-card-title">Movimiento del Mercado</h3>
+                    <p class="data-card-desc">Los ultimos fichajes y transferencias del futbol mundial en tiempo real.</p>
+                    <div class="data-card-footer">
+                        <span>Acceder</span>
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <a href="https://www.webdoxclm.com/blog/contratos-de-futbol-todo-lo-que-necesitas-saber" target="_blank" rel="noopener noreferrer" class="data-card">
+                <div class="data-card-header">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <div class="card-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        VERIFICADO
+                    </div>
+                    <div class="card-tag">CONTRATOS</div>
+                </div>
+                <div class="data-card-body">
+                    <h3 class="data-card-title">Detalles Contractuales</h3>
+                    <p class="data-card-desc">Cifras exactas, clausulas de rescision y detalles exclusivos de contratos.</p>
+                    <div class="data-card-footer">
+                        <span>Acceder</span>
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 3 -->
+            <a href="https://www.transfermarkt.com.ar/liga-profesional-de-futbol/verletztespieler/wettbewerb/AR1N" target="_blank" rel="noopener noreferrer" class="data-card">
+                <div class="data-card-header">
+                    <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+                    <div class="card-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        VERIFICADO
+                    </div>
+                    <div class="card-tag">PARTE MEDICO</div>
+                </div>
+                <div class="data-card-body">
+                    <h3 class="data-card-title">Parte Medico</h3>
+                    <p class="data-card-desc">Estado fisico de jugadores, lesiones y tiempos de recuperacion actualizados.</p>
+                    <div class="data-card-footer">
+                        <span>Acceder</span>
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 4 -->
+            <a href="https://www.ole.com.ar/tema/formaciones.html" target="_blank" rel="noopener noreferrer" class="data-card">
+                <div class="data-card-header">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    <div class="card-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        VERIFICADO
+                    </div>
+                    <div class="card-tag">FORMACIONES</div>
+                </div>
+                <div class="data-card-body">
+                    <h3 class="data-card-title">Formaciones Anticipadas</h3>
+                    <p class="data-card-desc">Los 11 titulares y las decisiones tacticas del DT antes de que se hagan publicas.</p>
+                    <div class="data-card-footer">
+                        <span>Acceder</span>
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 5 -->
+            <a href="https://proyectaplayers.com.ar/" target="_blank" rel="noopener noreferrer" class="data-card">
+                <div class="data-card-header">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                    <div class="card-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        VERIFICADO
+                    </div>
+                    <div class="card-tag">INSIDER</div>
+                </div>
+                <div class="data-card-body">
+                    <h3 class="data-card-title">Del Vestuario al Feed</h3>
+                    <p class="data-card-desc">Conexiones directas con representantes, dirigentes y jugadores. Informacion de primera mano.</p>
+                    <div class="data-card-footer">
+                        <span>Acceder</span>
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Multimedia Section -->
+    <section class="multimedia-section" id="multimedia">
+        <h2 class="section-title"><span class="red">CONTENIDO</span> MULTIMEDIA</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/0l1-kgE0jx0" 
+                            title="Figuras del Millonario" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Figuras del Millonario</h3>
+                    <p class="video-category">River Plate</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/gqOPScoROv4" 
+                            title="Jugadores de la Scaloneta" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Jugadores de la Scaloneta</h3>
+                    <p class="video-category">Seleccion Argentina</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contacto">
+        <h2 class="section-title"><span class="red">CONTACTAME</span> EN REDES</h2>
+        <div class="contact-container">
+            <div class="social-grid">
+                <a href="https://www.tiktok.com/@alexandercorsinsk8" target="_blank" rel="noopener noreferrer" class="social-card tiktok">
+                    <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                    TikTok
+                </a>
+                <a href="https://www.instagram.com/acorsinsky_2007/" target="_blank" rel="noopener noreferrer" class="social-card instagram">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    Instagram
+                </a>
+                <a href="https://wa.me/5491133729768" target="_blank" rel="noopener noreferrer" class="social-card whatsapp">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">&copy; 2026 <span>Alexander Oleg Corsinsky</span> | Periodismo Deportivo Independiente</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu on scroll
+        window.addEventListener('scroll', function() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
